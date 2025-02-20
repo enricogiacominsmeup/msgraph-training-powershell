@@ -8,7 +8,7 @@ param(
   [String]
   $AppName,
 
-  [Parameter(Mandatory=$false,
+  [Parameter(Mandatory=$true,
   HelpMessage="The sign in audience for the app")]
   [ValidateSet("AzureADMyOrg", "AzureADMultipleOrgs", `
   "AzureADandPersonalMicrosoftAccount", "PersonalMicrosoftAccount")]
@@ -17,7 +17,7 @@ param(
 
   [Parameter(Mandatory=$false)]
   [Switch]
-  $StayConnected = $false
+  $StayConnected = $true
 )
 
 # Tenant to use in authentication.

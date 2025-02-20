@@ -3,7 +3,7 @@
 
 Write-Host 'PowerShell Graph Tutorial'
 
-# Load settings
+# Load settings C:\GitHub\msgraph-training-powershell\user-auth\settings.json
 $settings = Get-Content './settings.json' -ErrorAction Stop | Out-String | ConvertFrom-Json
 
 $clientId = $settings.clientId
@@ -37,10 +37,7 @@ Write-Host "Email:", ($user.Mail ?? $user.UserPrincipalName)
 # </GreetUserSnippet>
 
 # <GetInboxSnippet>
-Get-MgUserMailFolderMessage -UserId $user.Id -MailFolderId Inbox -Select `
-  "from,isRead,receivedDateTime,subject" -OrderBy "receivedDateTime DESC" `
-  -Top 25 | Format-Table Subject,@{n='From';e={$_.From.EmailAddress.Name}}, `
-  IsRead,ReceivedDateTime
+Get-MgUserMailFolderMessage -UserId $user.Id -MailFolderId Inbox -Select "from,isRead,receivedDateTime,subject" -OrderBy "receivedDateTime DESC" -Top 25 | Format-Table Subject,@{n='From';e={$_.From.EmailAddress.Name}}, IsRead,ReceivedDateTime
 # </GetInboxSnippet>
 
 # <DefineMailSnippet>
